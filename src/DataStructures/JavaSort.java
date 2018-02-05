@@ -2,11 +2,11 @@ package DataStructures;
 
 import java.util.*;
 
-class Student {
+class StudentSort {
     private int    id;
     private String fname;
     private double cgpa;
-    public Student(int id, String fname, double cgpa) {
+    public StudentSort(int id, String fname, double cgpa) {
         super();
         this.id    = id;
         this.fname = fname;
@@ -28,27 +28,27 @@ public class JavaSort {
         Scanner scan  = new Scanner(System.in);
         int testCases = Integer.parseInt(scan.nextLine());
 
-        List<Student> studentList = new ArrayList<>();
+        List<StudentSort> studentSortList = new ArrayList<>();
         while (testCases-- > 0) {
             int id       = scan.nextInt();
             String fname = scan.next();
             double cgpa  = scan.nextDouble();
-            Student st   = new Student(id, fname, cgpa);
-            studentList.add(st);
+            StudentSort st   = new StudentSort(id, fname, cgpa);
+            studentSortList.add(st);
         }
         scan.close();
 
-        Collections.sort(studentList, new StudentComparator());
-        for (Student st: studentList) {
+        Collections.sort(studentSortList, new StudentSortComparator());
+        for (StudentSort st: studentSortList) {
             System.out.println(st.getFname());
         }
     }
 }
 
-class StudentComparator implements Comparator<Student> {
+class StudentSortComparator implements Comparator<StudentSort> {
     double epsilon = 0.001;
     @Override
-    public int compare(Student s1, Student s2) {
+    public int compare(StudentSort s1, StudentSort s2) {
         if (Math.abs(s1.getCgpa() - s2.getCgpa()) > epsilon) {
             return s1.getCgpa() < s2.getCgpa() ? 1 : -1;
         } else if (!s1.getFname().equals(s2.getFname())) {
